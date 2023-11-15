@@ -1,0 +1,25 @@
+<div class="header text-center">
+  <h1 class="bg-success"> Quiz Application </h1>
+
+  <div class="from bg-light " *ngFor="let question of question; let i = index">
+    <h3> {{i+1 }} . {{ question.que }}</h3>
+    <div *ngFor="let option of question.option; let j = index">
+      <label>
+        <input type="radio" class="radio" name="question{{ i }}" [(ngModel)]="userAnswers[i]" [value]="option">
+        {{j+1 }}  . {{ option }}
+      </label> 
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="submitQuiz()">Submit Quiz</button>
+
+
+  <div class="bg-light" *ngIf="quizSubmitted">
+    <h2>Results</h2>
+    <div *ngFor="let question of question; let i = index">
+      <p>{{ question.que }}</p>
+      <p>Your Answer:  {{ userAnswers[i] }}</p>
+      <p>Correct Answer:  {{ question.ans }}</p>
+    </div>
+  </div>
+
+</div>
